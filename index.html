@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Global Oil Prices 2026</title>
+<style>
+body { font-family: Arial; text-align: center; margin: 20px; }
+h1 { color: #1e3a8a; }
+table { margin: 20px auto; border-collapse: collapse; width: 60%; }
+th, td { border: 1px solid #333; padding: 8px; }
+.carousel img { width: 300px; height: 200px; object-fit: cover; margin: 10px; }
+#quote { font-style: italic; margin-top: 20px; }
+</style>
+</head>
+<body>
+<h1>Global Oil Prices – 2026 (USD)</h1>
+
+<div class="carousel">
+  <img id="img1" src="" alt="Oil Image">
+</div>
+
+<table id="oilTable">
+  <thead>
+    <tr><th>Country</th><th>Price (USD)</th></tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div id="quote"></div>
+
+<script>
+// 1. Load oil prices from S3 JSON
+async function loadOilPrices() {
+  const res = await fetch('https://YOUR_S3_BUCKET/oil_prices.json');
+  const data = await res.json();
+  const tbody = document.querySelector('#oilTable tbody');
+  tbody.innerHTML = '';
+  data.forEach(o => {
+    const row = `<tr><td>${o.country}</td><td>${o.price}</td></tr>`;
+    tbody.innerHTML += row;
+  });
+}
+
+// 2. Shuffle images
+const images = [
+  'https://YOUR_S3_BUCKET/image1.jpg',
+  'https://YOUR_S3_BUCKET/image2.jpg',
+  'https://YOUR_S3_BUCKET/image3.jpg',
+  'https://YOUR_S3_BUCKET/image4.jpg'
+];
+function shuffleImage() {
+  const img = document.getElementById('img1');
+  img.src = images[Math.floor(Math.random()*images.length)];
+}
+setInterval(shuffleImage, 3000); // change every 3 sec
+
+// 3. Fetch Quote of the Day
+async function loadQuote() {
+  const res = await fetch('https://api.quotable.io/random');
+  const data = await res.json();
+  document.getElementById('quote').innerText = `"${data.content}" – ${data.author}`;
+}
+
+// Initialize
+loadOilPrices();
+shuffleImage();
+loadQuote();
+</script>
+</body>
+</html>
