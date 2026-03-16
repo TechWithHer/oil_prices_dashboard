@@ -35,7 +35,7 @@ const img = document.getElementById("rotatingImage")
 setInterval(()=>{
 const random = Math.floor(Math.random()*images.length)
 img.src = images[random]
-},3000)
+},5000)
 
 }
 
