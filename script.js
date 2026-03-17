@@ -73,3 +73,4 @@ function renderTable(data) {
 
 // Load data on page load
 loadOilData();
+
