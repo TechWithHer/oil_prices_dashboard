@@ -5,38 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oil Prices Dashboard</title>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header>
-    <h1>Oil Prices</h1>
-    <p>Live global snapshot</p>
+    <h1>Oil Prices Dashboard</h1>
+    <p>Historical and Today's Prices | U.S. Cities</p>
   </header>
 
-  <!-- MAIN DASHBOARD -->
-  <section class="dashboard">
+  <!-- Current Prices Section -->
+  <section class="current-prices">
+    <h2>Today's Prices</h2>
+    <table id="currentPricesTable">
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>Price (USD per gallon)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be inserted here via JavaScript -->
+      </tbody>
+    </table>
+  </section>
 
-  <div class="card">
-    <h3>Today's Prices</h3>
-    <canvas id="todayChart"></canvas>
-  </div>
-
-  <div class="card">
-    <h3>Last 7 Days Trend</h3>
-    <canvas id="weeklyChart"></canvas>
-  </div>
-
+  <!-- Historical Trends Section -->
+  <section class="historical-trends">
+    <h2>Price Trends (Last 10–20 Years)</h2>
+    <canvas id="historicalChart"></canvas>
   </section>
 
   <footer>
-    AWS S3 • Lambda • EventBridge
+    <p>Powered by EIA Data | Updated Daily</p>
   </footer>
 
   <script src="script.js"></script>
-
 </body>
 </html>
