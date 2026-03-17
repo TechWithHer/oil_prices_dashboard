@@ -9,7 +9,7 @@ BUCKET = "oil-prices-project-techwithher"
 
 def lambda_handler(event, context):
 
-    current_time = datetime.utcnow()
+    current_time = datetime.now(datetime.timezone.utc)
     execution_date = current_time.strftime("%Y-%m-%d")
     execution_time = current_time.strftime("%H:%M:%S UTC")
 
@@ -17,7 +17,7 @@ def lambda_handler(event, context):
 
     try:
         # 🔹 API Call Start Time
-        start_time = datetime.utcnow()
+        start_time = datetime.now(datetime.timezone.utc)
 
         EIA_API_KEY = os.environ['EIA_API_KEY']
         url = f"https://api.eia.gov/v2/petroleum/pri/spt/data/?api_key={EIA_API_KEY}"
@@ -28,7 +28,7 @@ def lambda_handler(event, context):
         data = response.json()
 
         # 🔹 API Call End Time
-        end_time = datetime.utcnow()
+        end_time = datetime.now(datetime.timezone.utc)
         latency = (end_time - start_time).total_seconds()
 
         # 🔹 Extract latest price safely
@@ -40,10 +40,8 @@ def lambda_handler(event, context):
             {"country": "India", "price": round(latest_price * 1.03, 2)},
             {"country": "China", "price": round(latest_price * 1.02, 2)},
             {"country": "Russia", "price": round(latest_price * 0.97, 2)},
-            {"country": "Saudi Arabia", "price": round(latest_price * 0.95, 2)},
-            {"country": "Singapore", "price": round(latest_price * 1.04, 2)},
-            {"country": "Iran", "price": round(latest_price * 0.93, 2)},
-            {"country": "UAE", "price": round(latest_price * 0.96, 2)}
+            {"country": "Singapore", "price": round(latest_price * 1.04, 2)}
+
         ]
 
         # 🔹 Save latest data (for dashboard)
