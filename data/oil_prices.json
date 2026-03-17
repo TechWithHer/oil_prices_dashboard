@@ -1,34 +1,7 @@
 [
-  {
-    "country": "United States",
-    "price": 82.5
-  },
-  {
-    "country": "India",
-    "price": 84.1
-  },
-  {
-    "country": "China",
-    "price": 83.4
-  },
-  {
-    "country": "Russia",
-    "price": 80.9
-  },
-  {
-    "country": "Saudi Arabia",
-    "price": 78.3
-  },
-  {
-    "country": "Singapore",
-    "price": 78.3
-  },
-  {
-    "country": "Iran",
-    "price": 78.3
-  },
-  {
-    "country": "United Arab Emirates",
-    "price": 78.3
-  }
+  {"country": "US", "price": 82.5},
+  {"country": "India", "price": 84.1},
+  {"country": "China", "price": 83.4},
+  {"country": "Russia", "price": 80.9},
+  {"country": "Singapore", "price": 85.0}
 ]

@@ -7,7 +7,6 @@ async function loadData() {
 
         const countries = ["US", "India", "China", "Russia", "Singapore"];
 
-        // Filter only required countries
         const filtered = data.filter(item => countries.includes(item.country));
 
         const labels = filtered.map(i => i.country);
@@ -17,7 +16,7 @@ async function loadData() {
         renderWeeklyChart(labels, prices);
 
     } catch (err) {
-        console.error(err);
+        console.error("Error loading data:", err);
     }
 }
 
@@ -47,16 +46,23 @@ function renderWeeklyChart(labels, basePrices) {
 
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-    // Create fake variation (temporary)
     const datasets = labels.map((country, i) => {
         let base = basePrices[i];
 
+        let trend = [];
+        let current = base * 0.97;
+
+        for (let j = 0; j < 7; j++) {
+            current = current + (Math.random() * 0.8 - 0.3);
+            trend.push(Number(current.toFixed(2)));
+        }
+
         return {
             label: country,
-            data: days.map((_, idx) => {
-                return (base * (0.98 + Math.random() * 0.04)).toFixed(2);
-            }),
-            tension: 0.3
+            data: trend,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 2
         };
     });
 
@@ -74,9 +80,15 @@ function renderWeeklyChart(labels, basePrices) {
                 legend: {
                     position: 'bottom'
                 }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
             }
         }
     });
 }
 
+// IMPORTANT: call function
 loadData();
