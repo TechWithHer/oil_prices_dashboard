@@ -1,4 +1,5 @@
 import json
+import os
 import boto3
 import requests
 from datetime import datetime
@@ -14,7 +15,7 @@ def lambda_handler(event, context):
     log_key = f"logs/year={current_time.year}/month={current_time.month:02}/day={current_time.day:02}/log_{current_time.strftime('%H%M%S')}.json"
 
     try:
-        EIA_API_KEY = "bksrJHhqJtr0UVRUWuikttf1q66jgU9zuI9vxSff"
+        EIA_API_KEY = os.environ['EIA_API_KEY']
         url = f"https://api.eia.gov/v2/petroleum/pri/spt/data/?api_key={EIA_API_KEY}"
         r = requests.get(url, timeout=10)
         data = r.json()
@@ -23,16 +24,16 @@ def lambda_handler(event, context):
         latest_price = float(data["response"]["data"][0]["value"])
 
         # Hardcoded countries for dashboard
-        formatted = [
-            {"country": "USA", "price": round(latest_price, 2)},
-            {"country": "India", "price": round(latest_price * 1.03, 2)},
-            {"country": "China", "price": round(latest_price * 1.02, 2)},
-            {"country": "Russia", "price": round(latest_price * 0.97, 2)},
-            {"country": "Saudi Arabia", "price": round(latest_price * 0.95, 2)},
-            {"country": "Singapore", "price": round(latest_price * 1.04, 2)},
-            {"country": "Iran", "price": round(latest_price * 0.93, 2)},
-            {"country": "UAE", "price": round(latest_price * 0.96, 2)}
-        ]
+        formatted = { 
+            "US": round(latest_price, 2),
+            "India": round(latest_price * 1.03, 2),
+            "China": round(latest_price * 1.02, 2),
+            "Russia": round(latest_price * 0.97, 2),
+            "Saudi Arabia": round(latest_price * 0.95, 2),
+            "Singapore": round(latest_price * 1.04, 2),
+            "Iran": round(latest_price * 0.93, 2),
+            "UAE": round(latest_price * 0.96, 2)
+            }
 
         # Save latest data (dashboard)
         s3.put_object(

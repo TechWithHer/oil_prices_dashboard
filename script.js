@@ -7,12 +7,13 @@ fetch("data/oil_prices.json")
 
     countries.forEach(country => {
       const row = document.createElement("tr");
-
       row.innerHTML = `
         <td>${country}</td>
         <td>$${data[country] || "N/A"}</td>
       `;
-
       table.appendChild(row);
     });
+  })
+  .catch(error => {
+    console.error("Error fetching oil prices:", error);
   });
