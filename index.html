@@ -3,111 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <canvas id="oilChart"></canvas>
-  <table id="oilTable"></table>
   <title>Global Oil Prices Dashboard</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="script.js"></script>
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
-    /* Overlay for hero image */
-    .hero {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 60vh;
-      background-color: #0f172a;
+    :root {
+      --bg: #020617;
+      --card: #0f172a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #6366f1;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* subtle overlay */
-      border-radius: 12px;
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
-    .swiper-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      z-index: 1;
-    }
-    .swiper-slide img {
-      width: 100%;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-    /* Header and Dashboard spacing */
+
     header {
-      padding: 40px 20px;
-      background: #020617;
+      text-align: center;
+      padding: 60px 20px 30px;
     }
+
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
+      font-weight: 600;
     }
+
     header p {
-      color: #94a3b8;
-      font-size: 1rem;
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 0.95rem;
     }
+
+    /* HERO */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .swiper {
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .swiper img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    /* DASHBOARD */
     .dashboard {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
       display: grid;
+      gap: 24px;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      padding: 40px 20px;
     }
+
     .card {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
-    .card:hover {
-      transform: translateY(-5px);
-    }
+
     .card h2 {
-      margin-bottom: 20px;
-      color: #f1f5f9;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      font-weight: 500;
     }
+
+    /* TABLE */
     table {
       width: 100%;
       border-collapse: collapse;
-    }
-    td {
-      padding: 12px;
-      border-bottom: 1px solid #334155;
-    }
-    .placeholder {
-      color: #94a3b8;
       font-size: 0.95rem;
+    }
+
+    td {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    td:last-child {
+      text-align: right;
+      color: var(--muted);
+    }
+
+    /* CHART */
+    canvas {
       margin-top: 10px;
     }
+
+    .placeholder {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
-      background: #020617;
-      margin-top: 40px;
-      color: #94a3b8;
+      padding: 30px 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
     }
-    /* Mobile optimization */
+
+    /* MOBILE */
     @media (max-width: 600px) {
+      .swiper img {
+        height: 220px;
+      }
+
       header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 0.9rem;
-      }
-      .dashboard {
-        gap: 20px;
-      }
-      .card {
-        padding: 20px;
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -115,82 +136,60 @@
 
 <body>
 
+  <!-- HEADER -->
   <header>
-    <h1>🌍 Global Oil Prices Dashboard 2026</h1>
-    <p>Live insights • Trends • Predictions</p>
+    <h1>Global Oil Prices</h1>
+    <p>Live data • Trends • Insights</p>
   </header>
 
-  <!-- Rotating Image -->
+  <!-- HERO SLIDER -->
   <section class="hero">
-    <div class="swiper-container">
+    <div class="swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="images/oil1.jpg" alt="Oil Visual 1" />
-        </div>
-        <div class="swiper-slide">
-          <img src="images/oil2.jpg" alt="Oil Visual 2" />
-        </div>
-        <div class="swiper-slide">
-          <img src="images/oil3.jpg" alt="Oil Visual 3" />
-        </div>
-        <div class="swiper-slide">
-          <img src="images/oil4.jpg" alt="Oil Visual 4" />
-        </div>
+        <div class="swiper-slide"><img src="images/oil1.jpg"></div>
+        <div class="swiper-slide"><img src="images/oil2.jpg"></div>
+        <div class="swiper-slide"><img src="images/oil3.jpg"></div>
+        <div class="swiper-slide"><img src="images/oil4.jpg"></div>
       </div>
-      <!-- Add Pagination if you want -->
-      <div class="swiper-pagination"></div>
-      <!-- Add Navigation if you want -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
     </div>
   </section>
 
-  <!-- Cards Section -->
+  <!-- DASHBOARD -->
   <section class="dashboard">
-    <!-- CURRENT PRICES -->
+
     <div class="card">
-      <h2>📊 Current Prices</h2>
+      <h2>Today's Prices</h2>
       <table id="oilTable"></table>
     </div>
 
-    <!-- PAST TRENDS -->
     <div class="card">
-      <h2>📈 Past Trends</h2>
+      <h2>Price Distribution</h2>
       <canvas id="oilChart"></canvas>
-      <p class="placeholder">Historical data will appear here</p>
     </div>
 
-    <!-- PREDICTIONS -->
     <div class="card">
-      <h2>🔮 Predictions (Next Day)</h2>
-      <div id="predictions">
-        <p class="placeholder">AI predictions will appear here</p>
+      <h2>Predictions</h2>
+      <div class="placeholder">
+        Coming soon — AI-based predictions
       </div>
     </div>
+
   </section>
 
   <footer>
-    <p>Built with AWS S3 • Lambda • EventBridge • CI/CD</p>
+    Built with AWS • S3 • Lambda • EventBridge
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
+
   <script>
-    const swiper = new Swiper('.swiper-container', {
+    new Swiper('.swiper', {
       loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      autoplay: { delay: 3000 },
     });
   </script>
+
 </body>
 </html>
