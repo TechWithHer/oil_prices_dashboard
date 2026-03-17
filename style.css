@@ -86,3 +86,31 @@ footer {
     font-size: 1.5rem;
   }
 }
+
+canvas {
+    max-width: 900px;
+    margin: 40px auto;
+    display: block;
+}
+
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+th {
+    background: #f5f7fa;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background: #fafafa;
+}
