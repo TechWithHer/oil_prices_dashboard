@@ -11,6 +11,8 @@ async function loadData() {
 
     } catch (err) {
         console.error("Error loading data:", err);
+        const tbody = document.querySelector("#currentPricesTable tbody");
+        tbody.innerHTML = `<tr><td colspan="2">Failed to load data</td></tr>`;
     }
 }
 
@@ -53,4 +55,5 @@ function getColor(i) {
     return colors[i % colors.length];
 }
 
+// Load data on page load
 window.addEventListener("DOMContentLoaded", loadData);
