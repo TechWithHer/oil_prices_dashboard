@@ -8,7 +8,106 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css">
   <link
-  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <style>
+    /* Overlay for hero image */
+    .hero {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60vh;
+      background-color: #0f172a;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* subtle overlay */
+      border-radius: 12px;
+    }
+    .swiper-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      z-index: 1;
+    }
+    .swiper-slide img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    /* Header and Dashboard spacing */
+    header {
+      padding: 40px 20px;
+      background: #020617;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      color: #94a3b8;
+      font-size: 1rem;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      margin-bottom: 20px;
+      color: #f1f5f9;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #334155;
+    }
+    .placeholder {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      margin-top: 40px;
+      color: #94a3b8;
+    }
+    /* Mobile optimization */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      .dashboard {
+        gap: 20px;
+      }
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -20,32 +119,31 @@
 
   <!-- Rotating Image -->
   <section class="hero">
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="images/oil1.jpg" alt="Oil Visual 1" />
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/oil1.jpg" alt="Oil Visual 1" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/oil2.jpg" alt="Oil Visual 2" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/oil3.jpg" alt="Oil Visual 3" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/oil4.jpg" alt="Oil Visual 4" />
+        </div>
       </div>
-      <div class="swiper-slide">
-        <img src="images/oil2.jpg" alt="Oil Visual 2" />
-      </div>
-      <div class="swiper-slide">
-        <img src="images/oil3.jpg" alt="Oil Visual 3" />
-      </div>
-      <div class="swiper-slide">
-        <img src="images/oil4.jpg" alt="Oil Visual 4" />
-      </div>
+      <!-- Add Pagination if you want -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Navigation if you want -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
-    <!-- Add Pagination if you want -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Navigation if you want -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  </div>
-</section>
+  </section>
 
   <!-- Cards Section -->
   <section class="dashboard">
-
     <!-- CURRENT PRICES -->
     <div class="card">
       <h2>📊 Current Prices</h2>
@@ -66,14 +164,30 @@
         <p class="placeholder">AI predictions will appear here</p>
       </div>
     </div>
-
   </section>
 
   <footer>
     <p>Built with AWS S3 • Lambda • EventBridge • CI/CD</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
-
+  <script>
+    const swiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
 </body>
 </html>
