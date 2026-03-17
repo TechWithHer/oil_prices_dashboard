@@ -3,44 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oil Prices Dashboard</title>
+  <title>US Oil Prices Dashboard</title>
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <header>
-    <h1>Oil Prices Dashboard</h1>
-    <p>Historical and Today's Prices | U.S. Cities</p>
+    <h1>US Oil Prices</h1>
+    <p>Live data • Weekly trends</p>
   </header>
 
-  <!-- Current Prices Section -->
-  <section class="current-prices">
-    <h2>Today's Prices</h2>
-    <table id="currentPricesTable">
-      <thead>
-        <tr>
-          <th>City</th>
-          <th>Price (USD per gallon)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Data will be inserted here via JavaScript -->
-      </tbody>
-    </table>
-  </section>
+  <main>
+    <!-- Today's Prices Table -->
+    <section class="card">
+      <h2>Today's Prices</h2>
+      <table id="currentPricesTable">
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Price (USD)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
 
-  <!-- Historical Trends Section -->
-  <section class="historical-trends">
-    <h2>Price Trends (Last 10–20 Years)</h2>
-    <canvas id="historicalChart"></canvas>
-  </section>
+    <!-- Weekly Chart -->
+    <section class="card">
+      <h2>Last Week Prices</h2>
+      <canvas id="historicalChart" height="150"></canvas>
+    </section>
+  </main>
 
   <footer>
-    <p>Powered by EIA Data | Updated Daily</p>
+    Built with AWS S3 • Lambda • EventBridge
   </footer>
 
   <script src="script.js"></script>

@@ -1,7 +1,20 @@
-[
-  {"country": "US", "price": 82.5},
-  {"country": "India", "price": 84.1},
-  {"country": "China", "price": 83.4},
-  {"country": "Russia", "price": 80.9},
-  {"country": "Singapore", "price": 85.0}
-]
+{
+  "today": [
+    {"state": "NEW YORK", "price": 82.5},
+    {"state": "CALIFORNIA", "price": 84.1},
+    {"state": "TEXAS", "price": 83.4},
+    {"state": "FLORIDA", "price": 80.9},
+    {"state": "ILLINOIS", "price": 81.7}
+  ],
+  "weekly": {
+    "labels": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+    "countries": ["NEW YORK","CALIFORNIA","TEXAS","FLORIDA","ILLINOIS"],
+    "data": [
+      [82.1,82.3,82.4,82.5,82.6,82.4,82.5],
+      [84.0,84.1,84.2,84.1,84.0,84.2,84.1],
+      [83.0,83.1,83.3,83.4,83.2,83.3,83.4],
+      [80.5,80.6,80.8,80.9,81.0,80.9,80.9],
+      [81.4,81.5,81.6,81.7,81.5,81.6,81.7]
+    ]
+  }
+}

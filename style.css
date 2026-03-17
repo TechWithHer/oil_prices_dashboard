@@ -1,109 +1,80 @@
-/* Global Styles */
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #6366f1;
+}
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f9fafb;
-  color: #1f2937;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
-h1, h2 {
-  margin: 0;
-}
-
-/* Header */
 header {
   text-align: center;
-  padding: 40px 20px;
-  background: #020617;
-  color: #e2e8f0;
+  padding: 40px 20px 20px;
 }
 
 header h1 {
-  font-size: 2.2rem;
-  font-weight: 600;
+  margin: 0;
+  font-size: 2rem;
 }
 
 header p {
-  margin-top: 8px;
-  color: #cbd5e1;
-  font-size: 1rem;
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 0.9rem;
 }
 
-/* Sections */
-.current-prices, .historical-trends {
-  max-width: 1000px;
-  margin: 40px auto;
+main {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: grid;
+  gap: 30px;
+}
+
+.card {
+  background: var(--card);
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.current-prices h2, .historical-trends h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #020617;
-  font-weight: 500;
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
 }
 
-/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 0.95rem;
 }
 
 th, td {
-  padding: 12px 15px;
+  padding: 10px 8px;
   text-align: left;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 th {
-  background: #f3f4f6;
-  color: #1f2937;
-  font-weight: 600;
+  color: var(--accent);
+  font-weight: 500;
 }
 
 td:last-child {
   text-align: right;
+  font-weight: 500;
 }
 
-/* Chart */
-canvas {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* Footer */
 footer {
   text-align: center;
   padding: 30px 20px;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 0.85rem;
-  background: #f3f4f6;
-  margin-top: 40px;
-  border-top: 1px solid #e5e7eb;
-}
-
-/* Mobile Optimization */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-
-  .current-prices, .historical-trends {
-    padding: 10px;
-    margin: 20px auto;
-  }
-
-  th, td {
-    padding: 8px 10px;
-    font-size: 0.9rem;
-  }
 }
