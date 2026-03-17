@@ -1,42 +1,18 @@
-async function loadData() {
+const countries = ["US", "China", "India", "Russia", "Singapore", "UAE", "Iran"];
 
-const response = await fetch("data/oil_prices.json")
-const data = await response.json()
+fetch("data/oil_prices.json")
+  .then(res => res.json())
+  .then(data => {
+    const table = document.getElementById("oilTable");
 
-const countries = data.map(d => d.country)
-const prices = data.map(d => d.price)
+    countries.forEach(country => {
+      const row = document.createElement("tr");
 
-new Chart(document.getElementById("oilChart"), {
-type: "bar",
-data: {
-labels: countries,
-datasets: [{
-label: "Oil Price USD",
-data: prices
-}]
-}
-})
+      row.innerHTML = `
+        <td>${country}</td>
+        <td>$${data[country] || "N/A"}</td>
+      `;
 
-}
-
-loadData()
-
-const images = [
-"images/oil1.jpg",
-"images/oil2.jpg",
-"images/oil3.jpg",
-"images/oil4.jpg"
-]
-
-function rotateImages(){
-
-const img = document.getElementById("rotatingImage")
-
-setInterval(()=>{
-const random = Math.floor(Math.random()*images.length)
-img.src = images[random]
-},5000)
-
-}
-
-rotateImages()
+      table.appendChild(row);
+    });
+  });

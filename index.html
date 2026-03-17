@@ -1,22 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Global Oil Prices Dashboard</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Oil Prices Dashboard</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Global Oil Prices 2026</h1>
+  <header>
+    <h1>🌍 Global Oil Prices Dashboard 2026</h1>
+    <p>Live insights • Trends • Predictions</p>
+  </header>
 
-<img id="rotatingImage" width="400">
+  <!-- Rotating Image -->
+  <section class="hero">
+    <img id="rotatingImage" alt="Oil Visual">
+  </section>
 
-<canvas id="oilChart"></canvas>
+  <!-- Cards Section -->
+  <section class="dashboard">
 
-<table id="oilTable"></table>
+    <!-- CURRENT PRICES -->
+    <div class="card">
+      <h2>📊 Current Prices</h2>
+      <table id="oilTable"></table>
+    </div>
 
-<script src="script.js"></script>
+    <!-- PAST TRENDS -->
+    <div class="card">
+      <h2>📈 Past Trends</h2>
+      <canvas id="oilChart"></canvas>
+      <p class="placeholder">Historical data will appear here</p>
+    </div>
+
+    <!-- PREDICTIONS -->
+    <div class="card">
+      <h2>🔮 Predictions (Next Day)</h2>
+      <div id="predictions">
+        <p class="placeholder">AI predictions will appear here</p>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>Built with AWS S3 • Lambda • EventBridge • CI/CD</p>
+  </footer>
+
+  <script src="script.js"></script>
 
 </body>
-</html> 
+</html>
