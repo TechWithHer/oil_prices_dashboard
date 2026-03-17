@@ -36,7 +36,7 @@ def lambda_handler(event, context):
 
         # 🔹 Frontend-friendly format
         formatted = [
-            {"country": "USA", "price": round(latest_price, 2)},
+            {"country": "United States of America", "price": round(latest_price, 2)},
             {"country": "India", "price": round(latest_price * 1.03, 2)},
             {"country": "China", "price": round(latest_price * 1.02, 2)},
             {"country": "Russia", "price": round(latest_price * 0.97, 2)},
