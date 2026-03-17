@@ -27,3 +27,8 @@ jobs:
           --delete \
           --exclude ".git/*" \
           --exclude ".github/*"
+          --exclude "data/*" \
+          --exclude "logs/*" \
+          --exclude "lambda/*"
+
+        
