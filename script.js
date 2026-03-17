@@ -1,4 +1,4 @@
-const countries = ["US", "China", "India", "Russia", "Singapore", "UAE", "Iran"];
+const countries = ["US", "China", "India", "Russia", "Singapore"];
 
   fetch("data/oil_prices.json")
   .then(res => res.json())
