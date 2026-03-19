@@ -1,4 +1,4 @@
-# 🌍 Global Oil Price Monitoring Dashboard
+# 🌍 Oil Price Data Pipeline & Dashboard
 
 A cloud-native data pipeline and dashboard that automatically fetches daily oil price data for selected countries, stores historical logs in Amazon S3, and visualizes trends through a static website.
 
